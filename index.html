@@ -30,7 +30,7 @@
     html { scroll-behavior: smooth; height: 100%; scroll-padding-top: 64px; }
 
     body {
-      background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+      background: #04070f;
       color: var(--text);
       font-family: var(--ff-body);
       font-size: 16px;
@@ -452,7 +452,6 @@
     section {
       position: relative;
       z-index: 1;
-      /* Fix for fixed header overlap on anchor nav */
       scroll-margin-top: 64px;
     }
     .section-pad { padding: 60px 5%; }
@@ -494,7 +493,6 @@
     .reveal-delay-4 { transition-delay: 0.32s; }
     .reveal-delay-5 { transition-delay: 0.40s; }
 
-    /* ABOUT — background removed */
     #about { background: transparent; }
 
     .about-grid {
@@ -539,7 +537,6 @@
     }
     .stat-label { font-size: 0.73rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.2rem; }
 
-    /* SKILLS */
     #skills { background: transparent; }
 
     .skills-grid {
@@ -594,7 +591,6 @@
     .skill-tag.blue { background: rgba(77,166,255,0.07); border-color: rgba(77,166,255,0.2); color: var(--accent2); }
     .skill-tag.gold { background: rgba(255,209,102,0.07); border-color: rgba(255,209,102,0.2); color: var(--gold); }
 
-    /* EXPERIENCE — background removed */
     #experience { background: transparent; }
 
     .timeline { position: relative; padding-left: 2.4rem; }
@@ -654,7 +650,6 @@
       margin: 0.2rem 0.15rem 0 0;
     }
 
-    /* PROJECTS */
     #projects { background: transparent; }
 
     .projects-grid {
@@ -686,7 +681,6 @@
     .project-desc { color: var(--muted); font-size: 0.87rem; line-height: 1.62; flex: 1; }
     .project-techs { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1.1rem; }
 
-    /* EDUCATION — background removed */
     #education { background: transparent; }
 
     .edu-grid {
@@ -716,7 +710,6 @@
     .edu-school { font-size: 0.83rem; color: var(--muted); margin-bottom: 0.3rem; }
     .edu-grade { font-size: 0.8rem; color: var(--gold); font-weight: 700; }
 
-    /* ACHIEVEMENTS */
     #achievements { background: transparent; }
 
     .ach-grid {
@@ -738,7 +731,6 @@
     .ach-text { font-size: 0.88rem; color: var(--muted); }
     .ach-text strong { color: var(--text); display: block; margin-bottom: 0.2rem; font-weight: 700; }
 
-    /* CONTACT — background removed */
     #contact { background: transparent; }
 
     .contact-grid {
@@ -830,7 +822,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* RESPONSIVE */
     @media (max-width: 920px) {
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -851,20 +842,17 @@
 </head>
 <body>
 
-  <!-- PIXEL STAR BACKGROUND -->
   <div id="stars-wrap">
     <div id="stars"></div>
     <div id="stars2"></div>
     <div id="stars3"></div>
   </div>
 
-  <!-- HEADER -->
   <header>
     <div class="nav-initials">
       <img src="Rakesh123.ico" alt="RS" class="nav-favicon">
       RS<span>.</span>
     </div>
-
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
@@ -875,7 +863,6 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-
     <div class="name-ticker-wrap">
       <div class="name-ticker">
         <span>✦ Rakesh Samala</span>
@@ -884,7 +871,6 @@
         <span>✦ Rakesh Samala</span>
       </div>
     </div>
-
     <button class="ham-btn" id="hamBtn" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -901,7 +887,6 @@
     </ul>
   </div>
 
-  <!-- HERO -->
   <section id="home">
     <div class="hero-layout">
       <div class="hero-inner">
@@ -925,7 +910,6 @@
           <a href="mailto:rakeshsamala0505@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
-
       <div class="hero-photo-wrap">
         <img src="rakesh_dp.jpeg" alt="Rakesh Samala" class="hero-photo"
              onerror="this.style.background='#0c1322';this.style.minHeight='380px'">
@@ -935,7 +919,6 @@
     <div class="scroll-ind"><span>Scroll</span><div class="scroll-line"></div></div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about" class="section-pad">
     <div class="section-inner">
       <div class="section-label reveal">Who I Am</div>
@@ -977,7 +960,6 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills" class="section-pad">
     <div class="section-inner">
       <div class="section-label reveal">What I Work With</div>
@@ -1039,7 +1021,6 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE -->
   <section id="experience" class="section-pad">
     <div class="section-inner">
       <div class="section-label reveal">Where I've Worked</div>
@@ -1074,7 +1055,6 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects" class="section-pad">
     <div class="section-inner">
       <div class="section-label reveal">What I've Built</div>
@@ -1136,7 +1116,6 @@
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education" class="section-pad">
     <div class="section-inner">
       <div class="section-label reveal">Academic Background</div>
@@ -1164,7 +1143,6 @@
     </div>
   </section>
 
-  <!-- ACHIEVEMENTS -->
   <section id="achievements" class="section-pad">
     <div class="section-inner">
       <div class="section-label reveal">Extra Mile</div>
@@ -1190,7 +1168,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="section-pad">
     <div class="section-inner">
       <div class="section-label reveal">Say Hello</div>
@@ -1244,7 +1221,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p>Designed & Built by <span>Rakesh Samala</span> &nbsp;·&nbsp; © 2023</p>
   </footer>
