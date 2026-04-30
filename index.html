@@ -27,7 +27,7 @@
       --ff-body: 'Nunito', sans-serif;
     }
 
-    html { scroll-behavior: smooth; height: 100%; }
+    html { scroll-behavior: smooth; height: 100%; scroll-padding-top: 64px; }
 
     body {
       background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
@@ -449,8 +449,13 @@
     }
 
     /* SECTION COMMONS */
-    section { position: relative; z-index: 1; }
-    .section-pad { padding: 100px 5%; }
+    section {
+      position: relative;
+      z-index: 1;
+      /* Fix for fixed header overlap on anchor nav */
+      scroll-margin-top: 64px;
+    }
+    .section-pad { padding: 60px 5%; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
 
     .section-label {
@@ -489,8 +494,8 @@
     .reveal-delay-4 { transition-delay: 0.32s; }
     .reveal-delay-5 { transition-delay: 0.40s; }
 
-    /* ABOUT */
-    #about { background: rgba(7,12,22,0.65); }
+    /* ABOUT — background removed */
+    #about { background: transparent; }
 
     .about-grid {
       display: grid;
@@ -589,8 +594,8 @@
     .skill-tag.blue { background: rgba(77,166,255,0.07); border-color: rgba(77,166,255,0.2); color: var(--accent2); }
     .skill-tag.gold { background: rgba(255,209,102,0.07); border-color: rgba(255,209,102,0.2); color: var(--gold); }
 
-    /* EXPERIENCE */
-    #experience { background: rgba(7,12,22,0.65); }
+    /* EXPERIENCE — background removed */
+    #experience { background: transparent; }
 
     .timeline { position: relative; padding-left: 2.4rem; }
     .timeline::before {
@@ -681,8 +686,8 @@
     .project-desc { color: var(--muted); font-size: 0.87rem; line-height: 1.62; flex: 1; }
     .project-techs { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1.1rem; }
 
-    /* EDUCATION */
-    #education { background: rgba(7,12,22,0.65); }
+    /* EDUCATION — background removed */
+    #education { background: transparent; }
 
     .edu-grid {
       display: grid;
@@ -733,8 +738,8 @@
     .ach-text { font-size: 0.88rem; color: var(--muted); }
     .ach-text strong { color: var(--text); display: block; margin-bottom: 0.2rem; font-weight: 700; }
 
-    /* CONTACT */
-    #contact { background: rgba(7,12,22,0.65); }
+    /* CONTACT — background removed */
+    #contact { background: transparent; }
 
     .contact-grid {
       display: grid;
@@ -835,7 +840,7 @@
     }
 
     @media (max-width: 600px) {
-      .section-pad { padding: 65px 4%; }
+      .section-pad { padding: 40px 4%; }
       .hero-actions { flex-direction: column; }
       .btn-primary, .btn-outline { justify-content: center; width: 100%; max-width: 260px; }
       .projects-grid, .edu-grid, .ach-grid, .skills-grid { grid-template-columns: 1fr; }
@@ -963,8 +968,7 @@
           </div>
           <div class="hero-actions reveal reveal-delay-5">
             <a href="#contact" class="btn-primary"><i class="fas fa-comments"></i> Contact Me</a>
-            <a href="./Rakesh_Samala_Resume.pdf"
-               class="btn-outline" download="Rakesh_Samala_Resume.pdf">
+            <a href="./Rakesh_Samala_Resume.pdf" class="btn-outline" download="Rakesh_Samala_Resume.pdf">
               <i class="fas fa-download"></i> Download CV
             </a>
           </div>
@@ -1231,8 +1235,7 @@
             <a href="mailto:rakeshsamala0505@gmail.com" class="btn-primary" style="display:inline-flex;justify-content:center;margin-bottom:1rem;">
               <i class="fas fa-paper-plane"></i>&nbsp; Send Me an Email
             </a><br>
-            <a href="./Rakesh_Samala_Resume.pdf"
-               class="btn-outline" style="display:inline-flex;justify-content:center;" download>
+            <a href="./Rakesh_Samala_Resume.pdf" class="btn-outline" style="display:inline-flex;justify-content:center;" download>
               <i class="fas fa-file-pdf"></i>&nbsp; Download Resume
             </a>
           </div>
@@ -1247,8 +1250,7 @@
   </footer>
 
   <script>
-    /* ====== PIXEL STAR GENERATOR ====== */
-    function multipleBoxShadow(n, size) {
+    function multipleBoxShadow(n) {
       const shadows = [];
       for (let i = 0; i < n; i++) {
         const x = Math.floor(Math.random() * 2000);
@@ -1270,7 +1272,6 @@
     s2.style.boxShadow = shadowsMedium;
     s3.style.boxShadow = shadowsBig;
 
-    // Mirror shadows on ::after via a style tag (since JS can't set pseudo-element styles)
     const afterStyle = document.createElement('style');
     afterStyle.textContent = `
       #stars::after  { box-shadow: ${shadowsSmall}; }
@@ -1279,7 +1280,6 @@
     `;
     document.head.appendChild(afterStyle);
 
-    /* ====== TYPED TEXT ====== */
     const roles = ['Software Engineer','Full-Stack Developer','React & Node.js Dev','Problem Solver'];
     let rIdx = 0, cIdx = 0, deleting = false;
     const typedEl = document.getElementById('typed-text');
@@ -1296,13 +1296,11 @@
     }
     type();
 
-    /* ====== SCROLL REVEAL ====== */
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    /* ====== HAMBURGER ====== */
     const hamBtn     = document.getElementById('hamBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     hamBtn.addEventListener('click', () => {
@@ -1314,7 +1312,6 @@
       mobileMenu.classList.remove('open');
     }));
 
-    /* ====== ACTIVE NAV ====== */
     const secs  = document.querySelectorAll('section[id]');
     const navAs = document.querySelectorAll('nav a');
     window.addEventListener('scroll', () => {
