@@ -822,8 +822,16 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* =============================================
+       RESPONSIVE — only the two fixes below changed
+       ============================================= */
+
     @media (max-width: 920px) {
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      /* FIX 2: Center about photo and text on tablet/mobile */
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; justify-items: center; }
+      #about .section-label, #about .section-title { text-align: center; }
+      .about-content { text-align: center; }
+      .stats-row { justify-content: center; }
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       nav ul { display: none; }
       .name-ticker-wrap { display: none; }
@@ -832,7 +840,8 @@
 
     @media (max-width: 600px) {
       .section-pad { padding: 40px 4%; }
-      .hero-actions { flex-direction: column; }
+      /* FIX 1: Center hero buttons when they stack vertically */
+      .hero-actions { flex-direction: column; align-items: center; }
       .btn-primary, .btn-outline { justify-content: center; width: 100%; max-width: 260px; }
       .projects-grid, .edu-grid, .ach-grid, .skills-grid { grid-template-columns: 1fr; }
       .scroll-ind { display: none; }
