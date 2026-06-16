@@ -725,6 +725,7 @@
       inset: 0;
       width: 100%; height: 100%;
       object-fit: contain;
+      padding: 8px;
       opacity: 0;
       transition: opacity 1s ease;
       z-index: 1;
@@ -947,6 +948,61 @@
       font-weight: 600;
     }
 
+    /* Story lead-in */
+    .doc-story p { font-size: 1rem; line-height: 1.85; }
+    .doc-story p.lead-line {
+      font-family: var(--ff-head);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+    .doc-story p .hl { color: var(--accent); font-weight: 700; }
+    .free-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,209,102,0.1);
+      border: 1px solid rgba(255,209,102,0.3);
+      color: var(--gold);
+      font-family: var(--ff-head);
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin: 0.4rem 0 1rem;
+    }
+
+    /* Three-layer backup callout */
+    .backup-intro {
+      font-family: var(--ff-head);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 1.6rem 0 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .backup-intro i { color: var(--accent); }
+    .doc-backups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1rem 0 0.5rem; }
+    .doc-backup {
+      position: relative;
+      background: rgba(0,212,170,0.05);
+      border: 1px solid rgba(0,212,170,0.2);
+      border-radius: 14px;
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+    }
+    .doc-backup .bk-num {
+      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--accent); color: #04070f;
+      font-family: var(--ff-head); font-weight: 900; font-size: 0.8rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .doc-backup i { font-size: 1.7rem; color: var(--accent); margin: 0.4rem 0 0.7rem; }
+    .doc-backup h4 { font-family: var(--ff-head); font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 0.4rem; }
+    .doc-backup p { font-size: 0.84rem; color: var(--muted); margin: 0; }
+    @media (max-width: 640px) { .doc-backups { grid-template-columns: 1fr; } }
+
     .doc-cta {
       background: linear-gradient(135deg, rgba(0,212,170,0.08), rgba(77,166,255,0.05));
       border: 1px solid var(--border);
@@ -1152,7 +1208,7 @@
   <header>
     <div class="nav-initials">
       <img src="Rakesh123.ico" alt="RS" class="nav-favicon">
-      RS<span>.</span>
+      Rakesh Samala<span></span>
     </div>
     <nav>
       <ul>
@@ -1381,7 +1437,7 @@
             <img src="bks_screenshots/slide-1.png" alt="BKS Agri Mall screenshot 1" onerror="this.classList.add('hide')">
             <img src="bks_screenshots/slide-2.png" alt="BKS Agri Mall screenshot 2" onerror="this.classList.add('hide')">
             <img src="bks_screenshots/slide-3.png" alt="BKS Agri Mall screenshot 3" onerror="this.classList.add('hide')">
-            <img src="bks_screenshots/slide-4.png" alt="BKS Agri Mall screenshot 4" onerror="this.classList.add('hide')">
+            <img src="bks_screenshots/slide-4.pngg" alt="BKS Agri Mall screenshot 4" onerror="this.classList.add('hide')">
             <div class="bks-dots" id="bksDots"></div>
           </div>
           <div class="bks-content">
@@ -1551,7 +1607,7 @@
   <!-- ============================================================
        ★ FULL DOCUMENTATION OVERLAY (opens on "View Full Documentation")
        DOC SCREENSHOTS GO IN: bks_screenshots/<name>.jpeg
-       (login, dashboard, billing, inventory, customers, attendance, reports)
+       (login, billing, inventory, customers, attendance, reports)
        ============================================================ -->
   <div class="doc-overlay" id="docOverlay">
     <div class="doc-stars-wrap">
@@ -1562,7 +1618,7 @@
 
     <div class="doc-topbar">
       <div class="dt-name"><i class="fas fa-store"></i> BKS Agri Mall — Documentation</div>
-      <button class="doc-close" id="closeDoc"><i class="fas fa-arrow-left"></i> Back to Portfolio</button>
+      <button class="doc-close" id="closeDoc"><i class="fas fa-arrow-left"></i> Back </button>
     </div>
 
     <div class="doc-content">
@@ -1571,9 +1627,8 @@
         <div class="doc-eyebrow">Desktop ERP · Billing &amp; Inventory</div>
         <h1>BKS <span class="ac">Agri Mall</span><br>Billing Software</h1>
         <p>
-          A complete offline-first desktop ERP built for a real agricultural retail store —
-          covering everything from GST billing and inventory to staff attendance and sales
-          analytics, all packaged as a one-click Windows installer.
+          This one isn't just a project — it's something I built for a friend who was drowning
+          in paperwork. Here's the full story, and everything I put inside the app.
         </p>
         <div class="doc-techs">
           <span class="tech-badge">Electron</span>
@@ -1585,48 +1640,66 @@
         </div>
       </div>
 
-      <!-- OVERVIEW -->
-      <div class="doc-section">
-        <h2><span class="num">1</span> Overview</h2>
+      <!-- THE STORY -->
+      <div class="doc-section doc-story">
+        <h2><span class="num">1</span> Why I Built BKS Agri Mall</h2>
+        <p class="lead-line">So here's how it all started.</p>
         <p>
-          BKS Agri Mall is a desktop billing and inventory-management system I designed and built
-          for an agricultural retail business. The shop needed a fast, reliable tool that works
-          even without an internet connection, so I built it as a native Windows application that
-          stores all data locally and runs entirely on the shop's own computer.
+          BKS Agri Mall is my friend's new <span class="hl">startup</span>. When he started out,
+          he was struggling with everything on his own — all the <span class="hl">billing</span>,
+          the <span class="hl">inventory</span>, the <span class="hl">stocks</span>, the
+          <span class="hl">taxes</span>, everything by hand. Watching him go through all of that,
+          I thought to myself — <em>why wouldn't we just have one software for all of this?</em>
         </p>
         <p>
-          The goal was simple: replace manual registers and scattered spreadsheets with a single
-          app where the owner can generate bills, track stock, manage customers, record staff
-          attendance, and view daily/monthly sales — all from one screen.
+          So I started building this software. <span class="hl">From scratch to everything</span> —
+          I built out every single part of it myself. And I made it a
+          <span class="hl">free software</span> for him, because that's what I wanted to do for
+          a friend.
         </p>
-      </div>
+        <div class="free-badge"><i class="fas fa-gift"></i> 100% Free Software</div>
 
-      <!-- SKILLS / TECH -->
-      <div class="doc-section">
-        <h2><span class="num">2</span> Tech Stack &amp; Skills Used</h2>
-        <ul>
-          <li><strong>Electron</strong> — wraps the web UI into a native cross-platform desktop app.</li>
-          <li><strong>React.js</strong> — component-based front end for all the screens and forms.</li>
-          <li><strong>Node.js</strong> — backend logic, file handling, and database operations.</li>
-          <li><strong>SQLite</strong> — lightweight local database so the app works fully offline.</li>
-          <li><strong>HTML / CSS</strong> — custom responsive layouts and print-ready invoice templates.</li>
-          <li><strong>electron-builder</strong> — packaging the app into a Windows <code>.exe</code> installer.</li>
-        </ul>
+        <!-- THREE-LAYER BACKUP -->
+        <div class="backup-intro"><i class="fas fa-shield-halved"></i> I also added three backups for the data</div>
         <p>
-          Along the way I handled real distribution challenges too — including getting past the
-          Windows Defender SmartScreen warning for an unsigned installer and writing clear
-          install instructions for the client.
+          I knew his data was the most important thing, so I didn't want to rely on just one copy.
+          I built <span class="hl">three backups</span> right into the app:
+        </p>
+        <div class="doc-backups">
+          <div class="doc-backup">
+            <span class="bk-num">1</span>
+            <i class="fas fa-hard-drive"></i>
+            <h4>Local Storage</h4>
+            <p>First, all the data is saved safely on the shop's own computer.</p>
+          </div>
+          <div class="doc-backup">
+            <span class="bk-num">2</span>
+            <i class="fas fa-usb"></i>
+            <h4>Auto USB Backup</h4>
+            <p>Second, the app auto-detects a USB drive and transfers a copy of the data to it daily.</p>
+          </div>
+          <div class="doc-backup">
+            <span class="bk-num">3</span>
+            <i class="fas fa-envelope-circle-check"></i>
+            <h4>Weekly Email Backup</h4>
+            <p>And third, every week it sends a zip file of all the data straight to my mail.</p>
+          </div>
+        </div>
+        <p style="margin-top:1.2rem;">
+          That way his data is always safe — even if the computer crashes, it still lives on a
+          pen drive and in the inbox. Now let me walk you through everything I built inside the
+          app. 👇
         </p>
       </div>
 
       <!-- PAGE-BY-PAGE WALKTHROUGH -->
       <div class="doc-section">
-        <h2><span class="num">3</span> Inside the App</h2>
-        <p>Here's a walkthrough of every major screen, with a screenshot of each below its description.</p>
+        <h2><span class="num">2</span> Inside the App — Page by Page</h2>
+        <p>Here's a walkthrough of every screen I built, with a real screenshot under each one.</p>
 
         <!-- LOGIN -->
         <div class="doc-page">
-          <h3><span class="pg-ico"><i class="fas fa-right-to-bracket"></i></span> Login &amp; Security</h3>
+          <h3><span class="pg-ico"><i class="fas fa-right-to-bracket"></i></span> Login Page</h3>
           <p>
             The app opens to a secure login screen. Each user (owner / staff) signs in with their
             credentials, and access to sensitive sections like reports and settings is restricted
@@ -1638,11 +1711,9 @@
           </div>
         </div>
 
-    
-
         <!-- BILLING -->
         <div class="doc-page">
-          <h3><span class="pg-ico"><i class="fas fa-file-invoice"></i></span> Billing</h3>
+          <h3><span class="pg-ico"><i class="fas fa-file-invoice"></i></span> Billing Page </h3>
           <p>
             The heart of the app. The owner adds products to a bill, the totals and GST calculate
             automatically, and a clean, print-ready invoice is generated instantly. Stock is
@@ -1656,7 +1727,7 @@
 
         <!-- INVENTORY -->
         <div class="doc-page">
-          <h3><span class="pg-ico"><i class="fas fa-boxes-stacked"></i></span> Inventory</h3>
+          <h3><span class="pg-ico"><i class="fas fa-boxes-stacked"></i></span> Inventory Page</h3>
           <p>
             A complete product catalog where the owner adds items, sets prices, and tracks
             quantity on hand. The system flags low-stock products so nothing runs out unexpectedly,
@@ -1670,7 +1741,7 @@
 
         <!-- CUSTOMERS -->
         <div class="doc-page">
-          <h3><span class="pg-ico"><i class="fas fa-users"></i></span> Invoices</h3>
+          <h3><span class="pg-ico"><i class="fas fa-users"></i></span> Invoices Page</h3>
           <p>
             Stores customer details and purchase history, making it easy to look up past bills,
             track credit/dues, and build a loyal customer base. Repeat customers can be selected
@@ -1698,7 +1769,7 @@
 
         <!-- REPORTS -->
         <div class="doc-page">
-          <h3><span class="pg-ico"><i class="fas fa-chart-line"></i></span> Reports &amp; Analytics</h3>
+          <h3><span class="pg-ico"><i class="fas fa-chart-line"></i></span> Reports &amp; Analytics page</h3>
           <p>
             Generates daily, monthly, and custom-range sales reports so the owner can understand
             revenue, best-selling products, and overall business trends. Reports can be reviewed
@@ -1713,14 +1784,16 @@
 
       <!-- HOW I BUILT IT -->
       <div class="doc-section">
-        <h2><span class="num">4</span> How I Developed It</h2>
+        <h2><span class="num">3</span> How I Built It</h2>
+        <p>And here's how it all came together under the hood:</p>
         <ul>
           <li>Designed the UI as a <strong>React</strong> single-page app, with each module (billing, inventory, attendance, etc.) as its own component.</li>
           <li>Wrapped the front end in <strong>Electron</strong> so it runs as a true desktop app with native windows, menus, and printing.</li>
           <li>Used a local <strong>SQLite</strong> database so the entire system works <strong>100% offline</strong> — critical for a shop with unreliable internet.</li>
-          <li>Built the billing logic so stock, totals, and GST update automatically and stay consistent across every screen.</li>
-          <li>Packaged the final build into a <strong>Windows installer</strong> with <strong>electron-builder</strong> and shipped it to the client.</li>
-          <li>Handled real-world delivery: bypassing the <strong>Windows SmartScreen</strong> warning for an unsigned app and documenting the install steps.</li>
+          <li>Built the <strong>three-layer backup</strong> system — local save, auto USB copy, and a weekly zipped email backup — so the data is never at risk.</li>
+          <li>Wrote the billing logic so stock, totals, and GST update automatically and stay consistent across every screen.</li>
+          <li>Packaged the final build into a <strong>Windows installer</strong> with <strong>electron-builder</strong> and shipped it to my friend.</li>
+          <li>Handled real-world delivery too: getting past the <strong>Windows SmartScreen</strong> warning for an unsigned app and writing simple install steps.</li>
         </ul>
       </div>
 
