@@ -379,6 +379,8 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      border: none;
+      cursor: pointer;
     }
     .btn-primary:hover {
       background: #00f2c2;
@@ -399,6 +401,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      cursor: pointer;
     }
     .btn-outline:hover {
       border-color: var(--accent);
@@ -681,6 +684,297 @@
     .project-desc { color: var(--muted); font-size: 0.87rem; line-height: 1.62; flex: 1; }
     .project-techs { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 1.1rem; }
 
+    /* ============================================================
+       ★ BKS AGRI MALL — FEATURED PROJECT CARD + CAROUSEL
+       ============================================================ */
+    .featured-card {
+      grid-column: 1 / -1;
+      background: rgba(12,19,34,0.82);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      transition: all 0.3s;
+      backdrop-filter: blur(8px);
+    }
+    .featured-card:hover { border-color: rgba(0,212,170,0.3); box-shadow: var(--glow); }
+
+    .bks-carousel {
+      position: relative;
+      min-height: 340px;
+      background: #0a1120;
+      overflow: hidden;
+    }
+    .bks-carousel-ph {
+      position: absolute;
+      inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      padding: 1.5rem;
+      z-index: 0;
+    }
+    .bks-carousel-ph i { font-size: 2rem; color: var(--accent); opacity: 0.7; }
+    .bks-carousel-ph code { color: var(--accent); font-size: 0.78rem; }
+    .bks-carousel img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 1;
+    }
+    .bks-carousel img.active { opacity: 1; }
+    .bks-carousel img.hide { display: none; }
+    .bks-badge-float {
+      position: absolute;
+      top: 14px; left: 14px;
+      z-index: 3;
+      background: rgba(4,7,15,0.7);
+      border: 1px solid rgba(0,212,170,0.3);
+      color: var(--accent);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      backdrop-filter: blur(6px);
+    }
+    .bks-dots {
+      position: absolute;
+      bottom: 14px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 7px;
+      z-index: 3;
+    }
+    .bks-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.32);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .bks-dot.active { background: var(--accent); transform: scale(1.2); }
+
+    .bks-content { padding: 2.2rem; display: flex; flex-direction: column; }
+    .bks-eyebrow {
+      font-size: 0.74rem; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem;
+    }
+    .bks-title {
+      font-family: var(--ff-head); font-size: 1.5rem; font-weight: 900;
+      color: var(--text); margin-bottom: 0.7rem; line-height: 1.15;
+    }
+    .bks-desc { color: var(--muted); font-size: 0.92rem; line-height: 1.65; margin-bottom: 1.1rem; }
+    .bks-techs { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.6rem; }
+    .bks-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: auto; }
+    .bks-actions .btn-primary,
+    .bks-actions .btn-outline { font-size: 0.8rem; padding: 0.65rem 1.3rem; }
+
+    @media (max-width: 760px) {
+      .featured-card { grid-template-columns: 1fr; }
+      .bks-carousel { min-height: 240px; }
+    }
+
+    /* ============================================================
+       ★ FULL DOCUMENTATION OVERLAY
+       ============================================================ */
+    .doc-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: #04070f;
+      overflow-y: auto;
+      display: none;
+    }
+    .doc-overlay.open { display: block; }
+
+    .doc-stars-wrap {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    #dstars, #dstars2, #dstars3 {
+      position: absolute; top: 0; left: 0;
+      width: 1px; height: 1px; background: transparent;
+    }
+    #dstars  { animation: animStar 50s  linear infinite; }
+    #dstars2 { animation: animStar 100s linear infinite; width: 2px; height: 2px; }
+    #dstars3 { animation: animStar 150s linear infinite; width: 3px; height: 3px; }
+    #dstars::after  { content: " "; position: absolute; top: 2000px; left: 0; width: 1px; height: 1px; background: transparent; }
+    #dstars2::after { content: " "; position: absolute; top: 2000px; left: 0; width: 2px; height: 2px; background: transparent; }
+    #dstars3::after { content: " "; position: absolute; top: 2000px; left: 0; width: 3px; height: 3px; background: transparent; }
+
+    .doc-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1002;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 5%;
+      background: rgba(4,7,15,0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .doc-topbar .dt-name {
+      font-family: var(--ff-head);
+      font-weight: 900;
+      font-size: 1.05rem;
+      color: var(--text);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .doc-topbar .dt-name i { color: var(--accent); }
+    .doc-close {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,212,170,0.1);
+      border: 1px solid rgba(0,212,170,0.3);
+      color: var(--accent);
+      font-family: var(--ff-head);
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      padding: 0.5rem 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .doc-close:hover { background: var(--accent); color: #04070f; }
+
+    .doc-content {
+      position: relative;
+      z-index: 1;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2.5rem 5% 5rem;
+    }
+
+    .doc-hero { text-align: center; margin-bottom: 3.5rem; }
+    .doc-hero .doc-eyebrow {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.7rem;
+    }
+    .doc-hero h1 {
+      font-family: var(--ff-head);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: var(--text);
+      line-height: 1.08;
+      margin-bottom: 1rem;
+    }
+    .doc-hero h1 .ac { color: var(--accent); }
+    .doc-hero p { color: var(--muted); max-width: 620px; margin: 0 auto; font-size: 0.98rem; }
+    .doc-hero .doc-techs { justify-content: center; margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    .doc-section { margin-bottom: 3rem; }
+    .doc-section > h2 {
+      font-family: var(--ff-head);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .doc-section > h2 .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px;
+      border-radius: 9px;
+      background: rgba(0,212,170,0.1);
+      border: 1px solid rgba(0,212,170,0.25);
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+    .doc-section p { color: var(--muted); font-size: 0.96rem; margin-bottom: 1rem; }
+    .doc-section ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin: 0.6rem 0 1.2rem; }
+    .doc-section ul li { color: var(--muted); font-size: 0.93rem; padding-left: 1.4rem; position: relative; }
+    .doc-section ul li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+    .doc-section ul li strong { color: var(--text); }
+
+    /* Each app page block (title → text → screenshot) */
+    .doc-page {
+      background: rgba(12,19,34,0.55);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.8rem;
+      margin-bottom: 1.6rem;
+    }
+    .doc-page h3 {
+      font-family: var(--ff-head);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 0.55rem;
+    }
+    .doc-page h3 .pg-ico { color: var(--accent); }
+    .doc-page p { color: var(--muted); font-size: 0.93rem; margin-bottom: 0; }
+
+    .doc-shot {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #0a1120;
+      margin-top: 1.2rem;
+    }
+    .doc-shot img { width: 100%; display: block; }
+    .doc-shot-cap {
+      font-size: 0.76rem; color: var(--muted);
+      text-align: center; padding: 0.6rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+    /* When the screenshot is missing, show a dashed "add here" hint */
+    .doc-shot.no-img {
+      min-height: 170px;
+      display: flex; align-items: center; justify-content: center;
+      border-style: dashed;
+      border-color: rgba(0,212,170,0.3);
+    }
+    .doc-shot.no-img img,
+    .doc-shot.no-img .doc-shot-cap { display: none; }
+    .doc-shot.no-img::after {
+      content: '📷  Add screenshot →  ' attr(data-file);
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .doc-cta {
+      background: linear-gradient(135deg, rgba(0,212,170,0.08), rgba(77,166,255,0.05));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .doc-cta h2 { font-family: var(--ff-head); font-size: 1.6rem; font-weight: 900; color: var(--text); margin-bottom: 0.6rem; }
+    .doc-cta p { color: var(--muted); margin-bottom: 1.5rem; font-size: 0.94rem; }
+    .doc-cta-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
+    .btn-wa {
+      padding: 0.7rem 1.6rem;
+      background: #25d366;
+      color: #04140a;
+      font-family: var(--ff-head);
+      font-weight: 800;
+      font-size: 0.84rem;
+      border-radius: 8px;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: all 0.25s;
+    }
+    .btn-wa:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.3); }
+
+    @media (max-width: 600px) {
+      .doc-page, .doc-cta { padding: 1.4rem; }
+    }
+
     #education { background: transparent; }
 
     .edu-grid {
@@ -823,11 +1117,10 @@
     }
 
     /* =============================================
-       RESPONSIVE — only the two fixes below changed
+       RESPONSIVE
        ============================================= */
 
     @media (max-width: 920px) {
-      /* FIX 2: Center about photo and text on tablet/mobile */
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; justify-items: center; }
       #about .section-label, #about .section-title { text-align: center; }
       .about-content { text-align: center; }
@@ -840,7 +1133,6 @@
 
     @media (max-width: 600px) {
       .section-pad { padding: 40px 4%; }
-      /* FIX 1: Center hero buttons when they stack vertically */
       .hero-actions { flex-direction: column; align-items: center; }
       .btn-primary, .btn-outline { justify-content: center; width: 100%; max-width: 260px; }
       .projects-grid, .edu-grid, .ach-grid, .skills-grid { grid-template-columns: 1fr; }
@@ -956,7 +1248,7 @@
           <div class="stats-row reveal reveal-delay-4">
             <div class="stat"><div class="stat-num">1+</div><div class="stat-label">Year Exp.</div></div>
             <div class="stat"><div class="stat-num">100+</div><div class="stat-label">LeetCode</div></div>
-            <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Projects</div></div>
+            <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Projects</div></div>
           </div>
           <div class="hero-actions reveal reveal-delay-5">
             <a href="#contact" class="btn-primary"><i class="fas fa-comments"></i> Contact Me</a>
@@ -1002,6 +1294,7 @@
           <div class="skill-tags">
             <span class="skill-tag">MySQL</span>
             <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">SQLite</span>
           </div>
         </div>
         <div class="skill-card reveal reveal-delay-4">
@@ -1013,6 +1306,7 @@
             <span class="skill-tag">GitHub Actions</span>
             <span class="skill-tag">CI / CD</span>
             <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Electron</span>
           </div>
         </div>
         <div class="skill-card reveal reveal-delay-5">
@@ -1068,9 +1362,54 @@
     <div class="section-inner">
       <div class="section-label reveal">What I've Built</div>
       <h2 class="section-title reveal reveal-delay-1">Projects</h2>
-      <p class="section-sub reveal reveal-delay-2">Personal and academic projects that showcase my skills.</p>
+      <p class="section-sub reveal reveal-delay-2">Personal, freelance, and academic projects that showcase my skills.</p>
       <div class="projects-grid">
-        <div class="project-card reveal reveal-delay-1">
+
+        <!-- ============================================================
+             ★ FEATURED: BKS AGRI MALL — ERP BILLING SOFTWARE
+             CAROUSEL IMAGES GO IN:  bks_screenshots/slide-1.jpeg ... slide-4.jpeg
+             (Change .jpeg to .png if your screenshots are PNG)
+             ============================================================ -->
+        <div class="featured-card reveal reveal-delay-1">
+          <div class="bks-carousel" id="bksCarousel">
+            <span class="bks-badge-float">Featured · Desktop App</span>
+            <!-- Placeholder shown until you add the images -->
+            <div class="bks-carousel-ph">
+              <i class="fas fa-images"></i>
+              <div>Add rotating screenshots to<br><code>bks_screenshots/slide-1.jpeg → slide-4.jpeg</code></div>
+            </div>
+            <img src="bks_screenshots/slide-1.png" alt="BKS Agri Mall screenshot 1" onerror="this.classList.add('hide')">
+            <img src="bks_screenshots/slide-2.png" alt="BKS Agri Mall screenshot 2" onerror="this.classList.add('hide')">
+            <img src="bks_screenshots/slide-3.png" alt="BKS Agri Mall screenshot 3" onerror="this.classList.add('hide')">
+            <img src="bks_screenshots/slide-4.png" alt="BKS Agri Mall screenshot 4" onerror="this.classList.add('hide')">
+            <div class="bks-dots" id="bksDots"></div>
+          </div>
+          <div class="bks-content">
+            <div class="bks-eyebrow">Billing & Inventory ERP</div>
+            <h2 class="bks-title">BKS Agri Mall — Desktop ERP Billing Software</h2>
+            <p class="bks-desc">
+              A full offline-capable Windows desktop application built for an agricultural retail
+              business. Handles GST invoicing, stock &amp; inventory, customer management, staff
+              attendance, and sales reporting — all in one native app. Built with Electron, packaged
+              as a Windows installer, and shipped to a live client.
+            </p>
+            <div class="bks-techs">
+              <span class="tech-badge">Electron</span>
+              <span class="tech-badge">React.js</span>
+              <span class="tech-badge">Node.js</span>
+              <span class="tech-badge">SQLite</span>
+              <span class="tech-badge">electron-builder</span>
+            </div>
+            <div class="bks-actions">
+              <button class="btn-primary" id="openDoc"><i class="fas fa-book-open"></i> View Full Documentation</button>
+              <a class="btn-outline"
+                 href="https://wa.me/917032895953?text=Hi%20Rakesh%2C%20I%27d%20like%20to%20try%20your%20BKS%20Agri%20Mall%20billing%20software."
+                 target="_blank"><i class="fab fa-whatsapp"></i> Request Demo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal reveal-delay-2">
           <div class="project-top">
             <div class="project-icon">🔫</div>
             <div class="project-links"><a href="https://github.com/Rakeshsamala0505" target="_blank"><i class="fab fa-github"></i></a></div>
@@ -1082,7 +1421,8 @@
             <span class="tech-badge">OpenCV</span><span class="tech-badge">Deep Learning</span>
           </div>
         </div>
-        <div class="project-card reveal reveal-delay-2">
+
+        <div class="project-card reveal reveal-delay-3">
           <div class="project-top">
             <div class="project-icon">🚦</div>
             <div class="project-links"><a href="https://github.com/Rakeshsamala0505" target="_blank"><i class="fab fa-github"></i></a></div>
@@ -1094,33 +1434,7 @@
             <span class="tech-badge">Database Design</span>
           </div>
         </div>
-        <div class="project-card reveal reveal-delay-3">
-          <div class="project-top">
-            <div class="project-icon">🔐</div>
-            <div class="project-links"><a href="https://github.com/Rakeshsamala0505" target="_blank"><i class="fab fa-github"></i></a></div>
-          </div>
-          <div class="project-name">User Authentication System</div>
-          <p class="project-desc">Full authentication app with Django — registration, login, OAuth2.0 social auth, Django REST API, and SMTP email integration with a responsive Bootstrap UI.</p>
-          <div class="project-techs">
-            <span class="tech-badge">Django</span><span class="tech-badge">Python</span>
-            <span class="tech-badge">OAuth2.0</span><span class="tech-badge">REST API</span>
-          </div>
-        </div>
-        <div class="project-card reveal reveal-delay-4">
-          <div class="project-top">
-            <div class="project-icon">🏠</div>
-            <div class="project-links">
-              <a href="https://presidiorent.netlify.app/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-              <a href="https://github.com/Rakeshsamala0505" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
-          </div>
-          <div class="project-name">Rentify — Real Estate Platform</div>
-          <p class="project-desc">MERN-stack rental platform bridging sellers and buyers. Advanced search, responsive design, and automated rental agreements to simplify property renting.</p>
-          <div class="project-techs">
-            <span class="tech-badge">React.js</span><span class="tech-badge">Node.js</span>
-            <span class="tech-badge">Express.js</span><span class="tech-badge">MongoDB</span>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
@@ -1234,6 +1548,202 @@
     <p>Designed & Built by <span>Rakesh Samala</span> &nbsp;·&nbsp; © 2023</p>
   </footer>
 
+  <!-- ============================================================
+       ★ FULL DOCUMENTATION OVERLAY (opens on "View Full Documentation")
+       DOC SCREENSHOTS GO IN: bks_screenshots/<name>.jpeg
+       (login, dashboard, billing, inventory, customers, attendance, reports)
+       ============================================================ -->
+  <div class="doc-overlay" id="docOverlay">
+    <div class="doc-stars-wrap">
+      <div id="dstars"></div>
+      <div id="dstars2"></div>
+      <div id="dstars3"></div>
+    </div>
+
+    <div class="doc-topbar">
+      <div class="dt-name"><i class="fas fa-store"></i> BKS Agri Mall — Documentation</div>
+      <button class="doc-close" id="closeDoc"><i class="fas fa-arrow-left"></i> Back to Portfolio</button>
+    </div>
+
+    <div class="doc-content">
+
+      <div class="doc-hero">
+        <div class="doc-eyebrow">Desktop ERP · Billing &amp; Inventory</div>
+        <h1>BKS <span class="ac">Agri Mall</span><br>Billing Software</h1>
+        <p>
+          A complete offline-first desktop ERP built for a real agricultural retail store —
+          covering everything from GST billing and inventory to staff attendance and sales
+          analytics, all packaged as a one-click Windows installer.
+        </p>
+        <div class="doc-techs">
+          <span class="tech-badge">Electron</span>
+          <span class="tech-badge">React.js</span>
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">SQLite</span>
+          <span class="tech-badge">HTML / CSS</span>
+          <span class="tech-badge">electron-builder</span>
+        </div>
+      </div>
+
+      <!-- OVERVIEW -->
+      <div class="doc-section">
+        <h2><span class="num">1</span> Overview</h2>
+        <p>
+          BKS Agri Mall is a desktop billing and inventory-management system I designed and built
+          for an agricultural retail business. The shop needed a fast, reliable tool that works
+          even without an internet connection, so I built it as a native Windows application that
+          stores all data locally and runs entirely on the shop's own computer.
+        </p>
+        <p>
+          The goal was simple: replace manual registers and scattered spreadsheets with a single
+          app where the owner can generate bills, track stock, manage customers, record staff
+          attendance, and view daily/monthly sales — all from one screen.
+        </p>
+      </div>
+
+      <!-- SKILLS / TECH -->
+      <div class="doc-section">
+        <h2><span class="num">2</span> Tech Stack &amp; Skills Used</h2>
+        <ul>
+          <li><strong>Electron</strong> — wraps the web UI into a native cross-platform desktop app.</li>
+          <li><strong>React.js</strong> — component-based front end for all the screens and forms.</li>
+          <li><strong>Node.js</strong> — backend logic, file handling, and database operations.</li>
+          <li><strong>SQLite</strong> — lightweight local database so the app works fully offline.</li>
+          <li><strong>HTML / CSS</strong> — custom responsive layouts and print-ready invoice templates.</li>
+          <li><strong>electron-builder</strong> — packaging the app into a Windows <code>.exe</code> installer.</li>
+        </ul>
+        <p>
+          Along the way I handled real distribution challenges too — including getting past the
+          Windows Defender SmartScreen warning for an unsigned installer and writing clear
+          install instructions for the client.
+        </p>
+      </div>
+
+      <!-- PAGE-BY-PAGE WALKTHROUGH -->
+      <div class="doc-section">
+        <h2><span class="num">3</span> Inside the App</h2>
+        <p>Here's a walkthrough of every major screen, with a screenshot of each below its description.</p>
+
+        <!-- LOGIN -->
+        <div class="doc-page">
+          <h3><span class="pg-ico"><i class="fas fa-right-to-bracket"></i></span> Login &amp; Security</h3>
+          <p>
+            The app opens to a secure login screen. Each user (owner / staff) signs in with their
+            credentials, and access to sensitive sections like reports and settings is restricted
+            based on role. This keeps billing data safe on a shared shop computer.
+          </p>
+          <div class="doc-shot" data-file="bks_screenshots/login.jpeg">
+            <img src="bks_screenshots/login.png" alt="Login page" onerror="this.parentElement.classList.add('no-img')">
+            <div class="doc-shot-cap">Login &amp; authentication screen</div>
+          </div>
+        </div>
+
+    
+
+        <!-- BILLING -->
+        <div class="doc-page">
+          <h3><span class="pg-ico"><i class="fas fa-file-invoice"></i></span> Billing</h3>
+          <p>
+            The heart of the app. The owner adds products to a bill, the totals and GST calculate
+            automatically, and a clean, print-ready invoice is generated instantly. Stock is
+            reduced automatically with every sale, so inventory always stays accurate.
+          </p>
+          <div class="doc-shot" data-file="bks_screenshots/billing.jpeg">
+            <img src="bks_screenshots/billing.png" alt="Billing page" onerror="this.parentElement.classList.add('no-img')">
+            <div class="doc-shot-cap">Billing &amp; invoice generation</div>
+          </div>
+        </div>
+
+        <!-- INVENTORY -->
+        <div class="doc-page">
+          <h3><span class="pg-ico"><i class="fas fa-boxes-stacked"></i></span> Inventory</h3>
+          <p>
+            A complete product catalog where the owner adds items, sets prices, and tracks
+            quantity on hand. The system flags low-stock products so nothing runs out unexpectedly,
+            and every billing transaction updates stock in real time.
+          </p>
+          <div class="doc-shot" data-file="bks_screenshots/inventory.jpeg">
+            <img src="bks_screenshots/inventory.png" alt="Inventory page" onerror="this.parentElement.classList.add('no-img')">
+            <div class="doc-shot-cap">Inventory &amp; stock management</div>
+          </div>
+        </div>
+
+        <!-- CUSTOMERS -->
+        <div class="doc-page">
+          <h3><span class="pg-ico"><i class="fas fa-users"></i></span> Invoices</h3>
+          <p>
+            Stores customer details and purchase history, making it easy to look up past bills,
+            track credit/dues, and build a loyal customer base. Repeat customers can be selected
+            instantly during billing.
+          </p>
+          <div class="doc-shot" data-file="bks_screenshots/customers.jpeg">
+            <img src="bks_screenshots/customers.png" alt="Customers page" onerror="this.parentElement.classList.add('no-img')">
+            <div class="doc-shot-cap">Customer management</div>
+          </div>
+        </div>
+
+        <!-- ATTENDANCE -->
+        <div class="doc-page">
+          <h3><span class="pg-ico"><i class="fas fa-user-check"></i></span> Attendance</h3>
+          <p>
+            A built-in staff attendance module to mark daily present/absent records for employees.
+            This helps the owner track working days directly inside the same software used for
+            billing — no separate register needed.
+          </p>
+          <div class="doc-shot" data-file="bks_screenshots/attendance.jpeg">
+            <img src="bks_screenshots/attendance.png" alt="Attendance page" onerror="this.parentElement.classList.add('no-img')">
+            <div class="doc-shot-cap">Staff attendance tracking</div>
+          </div>
+        </div>
+
+        <!-- REPORTS -->
+        <div class="doc-page">
+          <h3><span class="pg-ico"><i class="fas fa-chart-line"></i></span> Reports &amp; Analytics</h3>
+          <p>
+            Generates daily, monthly, and custom-range sales reports so the owner can understand
+            revenue, best-selling products, and overall business trends. Reports can be reviewed
+            on screen and printed for record-keeping.
+          </p>
+          <div class="doc-shot" data-file="bks_screenshots/reports.jpeg">
+            <img src="bks_screenshots/reports.png" alt="Reports page" onerror="this.parentElement.classList.add('no-img')">
+            <div class="doc-shot-cap">Sales reports &amp; analytics</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW I BUILT IT -->
+      <div class="doc-section">
+        <h2><span class="num">4</span> How I Developed It</h2>
+        <ul>
+          <li>Designed the UI as a <strong>React</strong> single-page app, with each module (billing, inventory, attendance, etc.) as its own component.</li>
+          <li>Wrapped the front end in <strong>Electron</strong> so it runs as a true desktop app with native windows, menus, and printing.</li>
+          <li>Used a local <strong>SQLite</strong> database so the entire system works <strong>100% offline</strong> — critical for a shop with unreliable internet.</li>
+          <li>Built the billing logic so stock, totals, and GST update automatically and stay consistent across every screen.</li>
+          <li>Packaged the final build into a <strong>Windows installer</strong> with <strong>electron-builder</strong> and shipped it to the client.</li>
+          <li>Handled real-world delivery: bypassing the <strong>Windows SmartScreen</strong> warning for an unsigned app and documenting the install steps.</li>
+        </ul>
+      </div>
+
+      <!-- CONTACT / TEST -->
+      <div class="doc-cta">
+        <h2>Want to Test the App? 📲</h2>
+        <p>
+          Reach out and I'll walk you through a live demo of BKS Agri Mall or share the installer.
+          The fastest way to reach me is WhatsApp.
+        </p>
+        <div class="doc-cta-actions">
+          <a class="btn-wa"
+             href="https://wa.me/917032895953?text=Hi%20Rakesh%2C%20I%27d%20like%20to%20test%20your%20BKS%20Agri%20Mall%20billing%20software."
+             target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp: +91 70328 95953</a>
+          <a class="btn-outline" href="mailto:rakeshsamala0505@gmail.com">
+            <i class="fas fa-envelope"></i> rakeshsamala0505@gmail.com
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <script>
     function multipleBoxShadow(n) {
       const shadows = [];
@@ -1245,26 +1755,32 @@
       return shadows.join(', ');
     }
 
-    const s1 = document.getElementById('stars');
-    const s2 = document.getElementById('stars2');
-    const s3 = document.getElementById('stars3');
-
     const shadowsSmall  = multipleBoxShadow(700);
     const shadowsMedium = multipleBoxShadow(200);
     const shadowsBig    = multipleBoxShadow(100);
 
-    s1.style.boxShadow = shadowsSmall;
-    s2.style.boxShadow = shadowsMedium;
-    s3.style.boxShadow = shadowsBig;
+    // Main page stars
+    document.getElementById('stars').style.boxShadow  = shadowsSmall;
+    document.getElementById('stars2').style.boxShadow = shadowsMedium;
+    document.getElementById('stars3').style.boxShadow = shadowsBig;
+
+    // Documentation overlay stars (same effect)
+    document.getElementById('dstars').style.boxShadow  = shadowsSmall;
+    document.getElementById('dstars2').style.boxShadow = shadowsMedium;
+    document.getElementById('dstars3').style.boxShadow = shadowsBig;
 
     const afterStyle = document.createElement('style');
     afterStyle.textContent = `
       #stars::after  { box-shadow: ${shadowsSmall}; }
       #stars2::after { box-shadow: ${shadowsMedium}; }
       #stars3::after { box-shadow: ${shadowsBig}; }
+      #dstars::after  { box-shadow: ${shadowsSmall}; }
+      #dstars2::after { box-shadow: ${shadowsMedium}; }
+      #dstars3::after { box-shadow: ${shadowsBig}; }
     `;
     document.head.appendChild(afterStyle);
 
+    /* ===== Typing roles ===== */
     const roles = ['Software Engineer','Full-Stack Developer','React & Node.js Dev','Problem Solver'];
     let rIdx = 0, cIdx = 0, deleting = false;
     const typedEl = document.getElementById('typed-text');
@@ -1281,11 +1797,13 @@
     }
     type();
 
+    /* ===== Reveal on scroll ===== */
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
+    /* ===== Mobile menu ===== */
     const hamBtn     = document.getElementById('hamBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     hamBtn.addEventListener('click', () => {
@@ -1297,6 +1815,7 @@
       mobileMenu.classList.remove('open');
     }));
 
+    /* ===== Active nav highlight ===== */
     const secs  = document.querySelectorAll('section[id]');
     const navAs = document.querySelectorAll('nav a');
     window.addEventListener('scroll', () => {
@@ -1304,6 +1823,54 @@
       secs.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
       navAs.forEach(a => { a.style.color = a.getAttribute('href') === `#${cur}` ? 'var(--accent)' : ''; });
     });
+
+    /* ===== BKS carousel (auto-rotating screenshots) ===== */
+    (function () {
+      const carousel = document.getElementById('bksCarousel');
+      if (!carousel) return;
+      const slides = Array.from(carousel.querySelectorAll('img'));
+      const dotsWrap = document.getElementById('bksDots');
+      let idx = 0, timer = null;
+
+      // Build a dot per slide
+      slides.forEach((_, n) => {
+        const d = document.createElement('span');
+        d.className = 'bks-dot' + (n === 0 ? ' active' : '');
+        d.addEventListener('click', () => { show(n); restart(); });
+        dotsWrap.appendChild(d);
+      });
+      const dots = Array.from(dotsWrap.children);
+
+      function show(i) {
+        idx = i;
+        slides.forEach((s, n) => s.classList.toggle('active', n === i));
+        dots.forEach((d, n) => d.classList.toggle('active', n === i));
+      }
+      function next() { show((idx + 1) % slides.length); }
+      function start() { timer = setInterval(next, 2800); }
+      function restart() { clearInterval(timer); start(); }
+
+      show(0);
+      start();
+    })();
+
+    /* ===== Documentation overlay open/close ===== */
+    const docOverlay = document.getElementById('docOverlay');
+    const openDoc    = document.getElementById('openDoc');
+    const closeDoc   = document.getElementById('closeDoc');
+
+    function openDocs() {
+      docOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      docOverlay.scrollTop = 0;
+    }
+    function closeDocs() {
+      docOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    openDoc.addEventListener('click', openDocs);
+    closeDoc.addEventListener('click', closeDocs);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDocs(); });
   </script>
 </body>
 </html>
